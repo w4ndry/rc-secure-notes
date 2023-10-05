@@ -27,4 +27,5 @@ export interface IPropsNoteItem {
 export interface ICardNoteProps {
   item: INoteItem;
   onPress: () => void;
+  deleteNote: () => void;
 }

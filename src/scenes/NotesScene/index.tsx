@@ -7,9 +7,11 @@ import {NOTES_FORM_SCENE} from '../../navigations/SceneKey';
 import commonStyles from '../../styles';
 import {useFocusEffect} from '@react-navigation/native';
 import {getNotes} from '../../utils/NoteUtils';
+import useNotes from '../../hooks/useNotes';
 
 const NotesScene = ({navigation}: Props) => {
   const [notes, setNotes] = useState<INoteItem[]>([]);
+  const {deleteNote} = useNotes();
 
   useFocusEffect(
     useCallback(function updateNotes() {
@@ -29,7 +31,15 @@ const NotesScene = ({navigation}: Props) => {
     const onPress = () => {
       navigation.navigate(NOTES_FORM_SCENE, {item});
     };
-    return <CardNote item={item} onPress={onPress} />;
+    const deleteNoteById = () => {
+      deleteNote(item.id);
+      const notes = getNotes();
+      setNotes(notes);
+    };
+
+    return (
+      <CardNote item={item} onPress={onPress} deleteNote={deleteNoteById} />
+    );
   }, []);
 
   const renderKeyExtractor = useCallback((item: INoteItem) => {
