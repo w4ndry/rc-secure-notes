@@ -1,10 +1,10 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {Pressable, TextInput, View} from 'react-native';
 import styles from './styles';
-import { Props } from './types';
+import {Props} from './types';
 import commonStyles from '../../styles';
 import useNotes from '../../hooks/useNotes';
-import ButtonSave from './components/ButtonSave';
+import ButtonSave from '../../components/ButtonSave';
 
 const NotesFormScene = ({route, navigation}: Props) => {
   const inputNoteRef = useRef<TextInput>(null);
@@ -15,7 +15,7 @@ const NotesFormScene = ({route, navigation}: Props) => {
 
   useEffect(function setDataOnMount() {
     if (route.params?.item) {
-      const { item } = route.params;
+      const {item} = route.params;
       setTitle(item.title);
       setNote(item.note);
     }
@@ -32,7 +32,7 @@ const NotesFormScene = ({route, navigation}: Props) => {
     }
 
     if (route.params?.item) {
-      const { item } = route.params;
+      const {item} = route.params;
       editNote({id: item.id, title, note});
       navigation.pop();
       return;
@@ -63,7 +63,7 @@ const NotesFormScene = ({route, navigation}: Props) => {
           multiline={true}
         />
       </Pressable>
-      <ButtonSave onPress={onPress} />
+      <ButtonSave text="SAVE" onPress={onPress} />
     </View>
   );
 };

@@ -14,6 +14,3 @@ export type Props = {
   navigation: NotesFormSceneNavigationProp;
 };
 
-export interface IButtonSave {
-  onPress: () => void;
-}

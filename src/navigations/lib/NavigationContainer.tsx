@@ -12,7 +12,11 @@ const NavigationContainer = () => {
   return (
     <ReactNavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name={SceneKey.HOME_SCENE} component={HomeScene} />
+        <Stack.Screen
+          name={SceneKey.HOME_SCENE}
+          component={HomeScene}
+          options={{headerShown: false}}
+        />
         <Stack.Screen
           name={SceneKey.NOTES_SCENE}
           component={NotesScene}
