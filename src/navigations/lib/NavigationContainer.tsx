@@ -4,6 +4,7 @@ import HomeScene from '../../scenes/HomeScene';
 import * as SceneKey from '../SceneKey';
 import NotesScene from '../../scenes/NotesScene';
 import RootStackParamList from './types';
+import NotesFormScene from '../../scenes/NotesFormScene';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -16,6 +17,11 @@ const NavigationContainer = () => {
           name={SceneKey.NOTES_SCENE}
           component={NotesScene}
           options={{title: 'Notes'}}
+        />
+        <Stack.Screen
+          name={SceneKey.NOTES_FORM_SCENE}
+          component={NotesFormScene}
+          options={{title: 'Create Note'}}
         />
       </Stack.Navigator>
     </ReactNavigationContainer>

@@ -2,14 +2,14 @@ import { RouteProp } from '@react-navigation/native';
 import RootStackParamList from '../../../navigations/lib/types';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
-type HomeSceneRouteProp = RouteProp<RootStackParamList, 'homeScene'>;
+type NotesFormSceneRouteProp = RouteProp<RootStackParamList, 'notesFormScene'>;
 
-type HomeSceneNavigationProp = NativeStackNavigationProp<
+type NotesFormSceneNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
-  'homeScene'
+  'notesFormScene'
 >;
 
 export type Props = {
-  route: HomeSceneRouteProp;
-  navigation: HomeSceneNavigationProp;
+  route: NotesFormSceneRouteProp;
+  navigation: NotesFormSceneNavigationProp;
 };

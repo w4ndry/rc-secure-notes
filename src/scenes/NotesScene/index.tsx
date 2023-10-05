@@ -2,8 +2,10 @@ import React, {useCallback, useEffect, useState} from 'react';
 import {FlatList} from 'react-native';
 import styles from './styles';
 import CardNote from './components/CardNote';
-import {INoteItem, IPropsNoteItem} from './types';
+import {INoteItem, IPropsNoteItem, Props} from './types';
 import FloatingButton from '../../components/FloatingButton';
+import { NOTES_FORM_SCENE } from '../../navigations/SceneKey';
+import commonStyles from '../../styles';
 
 const data = [
   {
@@ -18,7 +20,7 @@ const data = [
   },
 ];
 
-const NotesScene = () => {
+const NotesScene = ({navigation}: Props) => {
   const [notes, setNotes] = useState<Array<INoteItem>>([]);
 
   useEffect(function setDataOnMount() {
@@ -33,15 +35,19 @@ const NotesScene = () => {
     return `${item.id}`;
   }, []);
 
+  const goToNoteFormScene = useCallback(() => {
+    navigation.navigate(NOTES_FORM_SCENE);
+  }, []);
+
   return (
     <>
       <FlatList
-        style={styles.container}
+        style={commonStyles.container}
         data={notes}
         renderItem={renderItem}
         keyExtractor={renderKeyExtractor}
       />
-      <FloatingButton />
+      <FloatingButton onPress={goToNoteFormScene} />
     </>
   );
 };

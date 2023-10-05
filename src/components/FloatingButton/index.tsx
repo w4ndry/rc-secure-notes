@@ -1,10 +1,11 @@
 import React, {memo} from 'react';
 import {Pressable, Text} from 'react-native';
 import styles from './styles';
+import { IFloatingButton } from './types';
 
-const FloatingButtonComponent = () => {
+const FloatingButtonComponent = ({onPress}: IFloatingButton) => {
   return (
-    <Pressable style={styles.container}>
+    <Pressable style={styles.container} onPress={onPress}>
       <Text style={styles.plusText}>+</Text>
     </Pressable>
   );
