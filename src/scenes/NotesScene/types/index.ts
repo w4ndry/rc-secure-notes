@@ -23,3 +23,8 @@ export interface INoteItem {
 export interface IPropsNoteItem {
   item: INoteItem;
 }
+
+export interface ICardNoteProps {
+  item: INoteItem;
+  onPress: () => void;
+}

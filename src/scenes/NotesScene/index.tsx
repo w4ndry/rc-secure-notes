@@ -26,7 +26,10 @@ const NotesScene = ({navigation}: Props) => {
   );
 
   const renderItem = useCallback(({item}: IPropsNoteItem) => {
-    return <CardNote {...item} />;
+    const onPress = () => {
+      navigation.navigate(NOTES_FORM_SCENE, {item});
+    };
+    return <CardNote item={item} onPress={onPress} />;
   }, []);
 
   const renderKeyExtractor = useCallback((item: INoteItem) => {

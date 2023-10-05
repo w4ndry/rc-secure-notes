@@ -1,16 +1,16 @@
 import React, {memo} from 'react';
 import {Pressable, Text} from 'react-native';
 import styles from './styles';
-import {INoteItem} from '../../types';
+import {ICardNoteProps} from '../../types';
 
-const CardNoteComponent = (props: INoteItem) => {
+const CardNoteComponent = ({item, onPress}: ICardNoteProps) => {
   return (
-    <Pressable style={styles.container}>
+    <Pressable style={styles.container} onPress={onPress}>
       <Text style={styles.title} numberOfLines={1}>
-        {props.title}
+        {item.title}
       </Text>
       <Text style={styles.note} numberOfLines={2}>
-        {props.note}
+        {item.note}
       </Text>
     </Pressable>
   );

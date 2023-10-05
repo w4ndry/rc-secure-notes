@@ -12,7 +12,6 @@ type NotesFormSceneNavigationProp = NativeStackNavigationProp<
 export type Props = {
   route: NotesFormSceneRouteProp;
   navigation: NotesFormSceneNavigationProp;
-  noteId?: number;
 };
 
 export interface IButtonSave {
