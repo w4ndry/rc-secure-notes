@@ -17,7 +17,7 @@ export type Props = {
 export interface INoteItem {
   id: number;
   title: string;
-  description: string;
+  note: string;
 }
 
 export interface IPropsNoteItem {

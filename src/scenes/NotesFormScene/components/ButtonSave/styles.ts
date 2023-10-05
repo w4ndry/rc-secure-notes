@@ -2,19 +2,15 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    borderWidth: 1,
-    borderColor: '#ddd',
+    marginTop: 16,
     borderRadius: 8,
     padding: 12,
-    marginBottom: 16,
+    alignItems: 'center',
+    backgroundColor: '#c7ddb5',
   },
-  title: {
-    color: '#000',
-  },
-  note: {
-    color: '#000',
-    fontSize: 12,
+  buttonText: {
+    color: '#fff',
+    fontWeight: 'bold',
   },
 });
 

@@ -1,31 +1,29 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {FlatList} from 'react-native';
-import styles from './styles';
 import CardNote from './components/CardNote';
 import {INoteItem, IPropsNoteItem, Props} from './types';
 import FloatingButton from '../../components/FloatingButton';
-import { NOTES_FORM_SCENE } from '../../navigations/SceneKey';
+import {NOTES_FORM_SCENE} from '../../navigations/SceneKey';
 import commonStyles from '../../styles';
-
-const data = [
-  {
-    id: 0,
-    title: 'Membaca',
-    description: 'Description membaca',
-  },
-  {
-    id: 1,
-    title: 'Membaca',
-    description: 'Description membaca',
-  },
-];
+import {useFocusEffect} from '@react-navigation/native';
+import {getNotes} from '../../utils/NoteUtils';
 
 const NotesScene = ({navigation}: Props) => {
-  const [notes, setNotes] = useState<Array<INoteItem>>([]);
+  const [notes, setNotes] = useState<INoteItem[]>([]);
 
-  useEffect(function setDataOnMount() {
-    setNotes(data);
-  }, []);
+  useFocusEffect(
+    useCallback(function updateNotes() {
+      let isFocused = true;
+      if (isFocused) {
+        const notes = getNotes();
+        setNotes(notes);
+      }
+
+      return () => {
+        isFocused = false;
+      };
+    }, []),
+  );
 
   const renderItem = useCallback(({item}: IPropsNoteItem) => {
     return <CardNote {...item} />;

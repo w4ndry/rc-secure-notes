@@ -9,8 +9,8 @@ const CardNoteComponent = (props: INoteItem) => {
       <Text style={styles.title} numberOfLines={1}>
         {props.title}
       </Text>
-      <Text style={styles.description} numberOfLines={2}>
-        {props.description}
+      <Text style={styles.note} numberOfLines={2}>
+        {props.note}
       </Text>
     </Pressable>
   );
