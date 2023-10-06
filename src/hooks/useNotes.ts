@@ -1,8 +1,8 @@
-import { useCallback } from 'react';
-import { getNotes } from '../utils/NoteUtils';
-import { save } from '../storage';
-import { SAVED_NOTE_LIST } from '../storage/storageKeys';
-import { INoteItem } from '../scenes/NotesScene/types';
+import {useCallback} from 'react';
+import {getNotes} from '../utils/NoteUtils';
+import {save} from '../storage';
+import {SAVED_NOTE_LIST} from '../storage/storageKeys';
+import {INoteItem} from '../scenes/NotesScene/types';
 
 function useNotes() {
   const saveNote = useCallback((title: string, note: string) => {
@@ -18,11 +18,11 @@ function useNotes() {
     save(SAVED_NOTE_LIST, newNotes);
   }, []);
 
-  const editNote = useCallback(({ id, title, note }: INoteItem) => {
+  const editNote = useCallback(({id, title, note}: INoteItem) => {
     const notes = getNotes();
     const newNote = notes.map(item => {
       if (item.id === id) {
-        return { ...item, title, note };
+        return {...item, title, note};
       }
       return item;
     });
@@ -37,7 +37,7 @@ function useNotes() {
     save(SAVED_NOTE_LIST, newNotes);
   }, []);
 
-  return { saveNote, editNote, deleteNote };
+  return {saveNote, editNote, deleteNote};
 }
 
 export default useNotes;

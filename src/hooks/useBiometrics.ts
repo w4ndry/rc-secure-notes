@@ -1,6 +1,6 @@
-import ReactNativeBiometrics, { BiometryTypes } from 'react-native-biometrics';
-import { useState } from 'react';
-import { Alert, Platform } from 'react-native';
+import ReactNativeBiometrics, {BiometryTypes} from 'react-native-biometrics';
+import {useState} from 'react';
+import {Alert, Platform} from 'react-native';
 
 interface IPromptOptions {
   message: string;
@@ -16,7 +16,8 @@ const TEXT = {
   noConnection: 'Network request failed',
   biometricAuthFailed:
     'Log in attempts with biometric failed 5 times. To try again, lock your phone first, then unlock it.',
-  biometricBtnClose: 'OK, Got It',
+  biometricBtnClose: 'Close',
+  btnUsePassword: 'Login Using Password',
 };
 
 const useBiometrics = () => {
@@ -28,7 +29,7 @@ const useBiometrics = () => {
   const isIOS = Platform.OS === 'ios';
 
   async function checkSensor(errorCallback?: (args: string) => void) {
-    const { available, biometryType, error } =
+    const {available, biometryType, error} =
       await rnBiometrics.isSensorAvailable();
     if (available) {
       setIsAvailable(true);
@@ -67,11 +68,14 @@ const useBiometrics = () => {
         }
         handleError?.();
       })
-      .catch((err: { message: string }) => {
-        handleBiometricAuthFailed(err);
+      .catch((err: {message: string}) => {
+        handleBiometricAuthFailed(err, handleError);
       });
 
-    function handleBiometricAuthFailed(err: { message: string }) {
+    function handleBiometricAuthFailed(
+      err: {message: string},
+      errorCallback?: () => void,
+    ) {
       const isWrongInputBiometricThreeTimes = /Code=-1/;
       const isAppStateChange = /Code=-4/;
 
@@ -85,6 +89,10 @@ const useBiometrics = () => {
       Alert.alert('', TEXT.biometricAuthFailed, [
         {
           text: TEXT.biometricBtnClose,
+        },
+        {
+          text: TEXT.btnUsePassword,
+          onPress: () => errorCallback?.(),
         },
       ]);
     }

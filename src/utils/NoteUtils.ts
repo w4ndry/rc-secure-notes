@@ -1,6 +1,6 @@
-import { INoteItem } from '../scenes/NotesScene/types';
-import { loadString } from '../storage';
-import { SAVED_NOTE_LIST } from '../storage/storageKeys';
+import {INoteItem} from '../scenes/NotesScene/types';
+import {loadString} from '../storage';
+import {SAVED_NOTE_LIST} from '../storage/storageKeys';
 
 export function getNotes() {
   const stringNotes = loadString(SAVED_NOTE_LIST);

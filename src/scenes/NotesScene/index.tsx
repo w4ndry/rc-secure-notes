@@ -8,12 +8,10 @@ import commonStyles from '../../styles';
 import {useFocusEffect} from '@react-navigation/native';
 import {getNotes} from '../../utils/NoteUtils';
 import useNotes from '../../hooks/useNotes';
-import useBiometrics from '../../hooks/useBiometrics';
 
 const NotesScene = ({navigation}: Props) => {
   const [notes, setNotes] = useState<INoteItem[]>([]);
   const {deleteNote} = useNotes();
-  const {showBiometrics} = useBiometrics();
 
   useFocusEffect(
     useCallback(function updateNotes() {
@@ -31,18 +29,12 @@ const NotesScene = ({navigation}: Props) => {
 
   const renderItem = useCallback(({item}: IPropsNoteItem) => {
     const onPress = () => {
-      const handleSuccess = () => {
-        navigation.navigate(NOTES_FORM_SCENE, {item});
-      };
-      showBiometrics(handleSuccess);
+      navigation.navigate(NOTES_FORM_SCENE, {item});
     };
     const deleteNoteById = () => {
-      const handleSuccess = () => {
-        deleteNote(item.id);
-        const notes = getNotes();
-        setNotes(notes);
-      };
-      showBiometrics(handleSuccess);
+      deleteNote(item.id);
+      const notes = getNotes();
+      setNotes(notes);
     };
 
     return (

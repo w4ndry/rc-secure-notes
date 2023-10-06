@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -6,7 +6,8 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 12,
     alignItems: 'center',
-    backgroundColor: '#c7ddb5',
+    backgroundColor: '#76BA1B',
+    elevation: 2,
   },
   buttonText: {
     color: '#fff',
