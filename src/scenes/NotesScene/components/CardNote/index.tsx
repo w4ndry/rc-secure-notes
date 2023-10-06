@@ -15,7 +15,7 @@ const CardNoteComponent = ({item, onPress, deleteNote}: ICardNoteProps) => {
         </Text>
       </Pressable>
       <Pressable style={styles.deleteButton} onPress={deleteNote}>
-        <Text>Hapus</Text>
+        <Text>Delete</Text>
       </Pressable>
     </View>
   );

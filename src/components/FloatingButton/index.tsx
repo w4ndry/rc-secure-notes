@@ -1,7 +1,7 @@
 import React, {memo} from 'react';
 import {Pressable, Text} from 'react-native';
 import styles from './styles';
-import { IFloatingButton } from './types';
+import {IFloatingButton} from './types';
 
 const FloatingButtonComponent = ({onPress}: IFloatingButton) => {
   return (

@@ -1,5 +1,5 @@
 import React, {useCallback, useState} from 'react';
-import {FlatList} from 'react-native';
+import {FlatList, Text} from 'react-native';
 import CardNote from './components/CardNote';
 import {INoteItem, IPropsNoteItem, Props} from './types';
 import FloatingButton from '../../components/FloatingButton';
@@ -8,6 +8,7 @@ import commonStyles from '../../styles';
 import {useFocusEffect} from '@react-navigation/native';
 import {getNotes} from '../../utils/NoteUtils';
 import useNotes from '../../hooks/useNotes';
+import styles from './styles';
 
 const NotesScene = ({navigation}: Props) => {
   const [notes, setNotes] = useState<INoteItem[]>([]);
@@ -50,6 +51,10 @@ const NotesScene = ({navigation}: Props) => {
     navigation.navigate(NOTES_FORM_SCENE);
   }, []);
 
+  const renderEmptyItem = useCallback(() => {
+    return <Text style={styles.emptyText}>Note is empty.</Text>;
+  }, []);
+
   return (
     <>
       <FlatList
@@ -57,6 +62,7 @@ const NotesScene = ({navigation}: Props) => {
         data={notes}
         renderItem={renderItem}
         keyExtractor={renderKeyExtractor}
+        ListEmptyComponent={renderEmptyItem}
       />
       <FloatingButton onPress={goToNoteFormScene} />
     </>

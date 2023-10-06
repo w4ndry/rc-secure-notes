@@ -20,12 +20,12 @@ const NavigationContainer = () => {
         <Stack.Screen
           name={SceneKey.NOTES_SCENE}
           component={NotesScene}
-          options={{title: 'Notes'}}
+          options={{title: 'Notes', animation: 'slide_from_right'}}
         />
         <Stack.Screen
           name={SceneKey.NOTES_FORM_SCENE}
           component={NotesFormScene}
-          options={{title: 'Create Note'}}
+          options={{title: 'Create Note', animation: 'slide_from_right'}}
         />
       </Stack.Navigator>
     </ReactNavigationContainer>
