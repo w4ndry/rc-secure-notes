@@ -1,5 +1,5 @@
-import {NavigationContainer as ReactNavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { NavigationContainer as ReactNavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScene from '../../scenes/HomeScene';
 import * as SceneKey from '../SceneKey';
 import NotesScene from '../../scenes/NotesScene';
@@ -15,17 +15,17 @@ const NavigationContainer = () => {
         <Stack.Screen
           name={SceneKey.HOME_SCENE}
           component={HomeScene}
-          options={{headerShown: false}}
+          options={{ title: 'Home', headerShown: false }}
         />
         <Stack.Screen
           name={SceneKey.NOTES_SCENE}
           component={NotesScene}
-          options={{title: 'Notes', animation: 'slide_from_right'}}
+          options={{ title: 'Notes', animation: 'slide_from_right' }}
         />
         <Stack.Screen
           name={SceneKey.NOTES_FORM_SCENE}
           component={NotesFormScene}
-          options={{title: 'Create Note', animation: 'slide_from_right'}}
+          options={{ title: 'Create Note', animation: 'slide_from_right' }}
         />
       </Stack.Navigator>
     </ReactNavigationContainer>

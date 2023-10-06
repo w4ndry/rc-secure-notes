@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   centeredView: {
@@ -29,19 +29,36 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   inputTitle: {
-    borderWidth: 1,
-    borderColor: '#000',
-    borderRadius: 8,
-    padding: 6,
-    marginBottom: 16,
+    flex: 1,
+    height: 30,
+    justifyContent: 'center',
+    marginRight: 6,
+  },
+  inputConfirmPassword: {
+    marginTop: 16,
   },
   errorText: {
     color: 'red',
     fontSize: 12,
+    marginTop: 8,
   },
   forgotPasswordText: {
     textAlign: 'center',
     marginTop: 12,
+  },
+  inputContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: '#000',
+    borderRadius: 8,
+    padding: 6,
+  },
+  showText: {
+    fontSize: 12,
+    color: '#000',
+    alignSelf: 'center',
   },
 });
 

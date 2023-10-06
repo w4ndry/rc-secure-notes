@@ -1,6 +1,6 @@
-import {useCallback, useEffect, useState} from 'react';
-import {loadString, save} from '../storage';
-import {SAVED_PASSWORD} from '../storage/storageKeys';
+import { useCallback, useEffect, useState } from 'react';
+import { loadString, save } from '../storage';
+import { SAVED_PASSWORD } from '../storage/storageKeys';
 
 const MIN_PASSWORD_LENGTH = 6;
 
@@ -11,28 +11,46 @@ function usePassword() {
   const [errorMessage, setErrorMessage] = useState('');
   const [isForgotPassword, setIsForgotPassword] = useState(false);
   const [isSavePasswordSuccess, setIsSavePasswordSuccess] = useState(false);
+  const [isShowPassword, setIsShowPassword] = useState(false);
+  const [isShowConfirmPassword, setIsShowConfirmPassword] = useState(false);
 
   useEffect(
-    function resetPassword() {
+    function resetStateOnSuccess() {
       if (isSavePasswordSuccess) {
-        setErrorMessage('');
-        setPassword('');
-        setConfirmPassword('');
-        setIsForgotPassword(false);
-        setIsSavePasswordSuccess(false);
+        resetState();
       }
     },
     [isSavePasswordSuccess],
   );
 
   useEffect(
-    function resetPassword() {
+    function resetSavePasswordSuccess() {
       if (isForgotPassword) {
         setIsSavePasswordSuccess(false);
+        resetInputState();
       }
     },
     [isForgotPassword],
   );
+
+  const resetState = useCallback(() => {
+    setErrorMessage('');
+    setPassword('');
+    setConfirmPassword('');
+    setIsForgotPassword(false);
+    setIsSavePasswordSuccess(false);
+    setIsLoginSuccess(false);
+    setIsShowPassword(false);
+    setIsShowConfirmPassword(false);
+  }, []);
+
+  const resetInputState = useCallback(() => {
+    setErrorMessage('');
+    setPassword('');
+    setConfirmPassword('');
+    setIsShowPassword(false);
+    setIsShowConfirmPassword(false);
+  }, []);
 
   const savePassword = useCallback(() => {
     if (!password) {
@@ -40,16 +58,16 @@ function usePassword() {
       return;
     }
     if (!isPasswordExist() || isForgotPassword) {
-      if (password.length !== MIN_PASSWORD_LENGTH) {
+      if (password.length < MIN_PASSWORD_LENGTH) {
         setErrorMessage(`Password minimal ${MIN_PASSWORD_LENGTH} character`);
         return;
       }
       if (!confirmPassword) {
-        setErrorMessage('Password is note mismatch');
+        setErrorMessage('Password does not mismatch');
         return;
       }
       if (password.length !== confirmPassword.length) {
-        setErrorMessage('Password is not mismatch');
+        setErrorMessage('Password does not mismatch');
         return;
       }
 
@@ -76,12 +94,18 @@ function usePassword() {
     setPassword,
     setConfirmPassword,
     setIsForgotPassword,
+    resetState,
+    setIsShowPassword,
+    setIsShowConfirmPassword,
+
     password,
     confirmPassword,
     errorMessage,
     isForgotPassword,
     isSavePasswordSuccess,
     isLoginSuccess,
+    isShowPassword,
+    isShowConfirmPassword,
   };
 }
 
