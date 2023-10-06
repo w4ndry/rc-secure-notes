@@ -1,7 +1,7 @@
 import { MMKV } from 'react-native-mmkv';
 import { STORAGE_USER_ID, STORAGE_ENCRYPTION_KEY } from 'react-native-dotenv';
 
-const storage = new MMKV({
+export const storage = new MMKV({
   id: STORAGE_USER_ID,
   encryptionKey: STORAGE_ENCRYPTION_KEY,
 });
