@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
   },
   inputTitle: {
     flex: 1,
-    height: 30,
+    height: 40,
     justifyContent: 'center',
     marginRight: 6,
   },
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#000',
     borderRadius: 8,
-    padding: 6,
+    paddingHorizontal: 6,
   },
   showText: {
     fontSize: 12,
